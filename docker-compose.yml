@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - chat-net
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:5173"
+    depends_on:
+      - backend
+    networks:
+      - chat-net
+
+networks:
+  chat-net:
+    driver: bridge
