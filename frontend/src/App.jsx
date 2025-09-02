@@ -2,11 +2,15 @@ import './index.css'
 import { useChat } from './hooks/UseChat'
 import { useState } from 'react';
 import ChatHeader from './components/ChatHeader'
+import ChatMessages from './components/ChatMessages.jsx'
+
 
 function App() {
 	const [isDarkMode, setIsDarkMode] = useState(false);
 
 	const {
+		messages,
+		loading,
 		clearChat
 	} = useChat();
 
@@ -24,6 +28,12 @@ return (
 				isDarkMode={isDarkMode}
 				onToggleTheme={toggleTheme}
 				onClearChat={clearChat}
+			/>
+
+			<ChatMessages 
+				messages={messages}
+				loading={loading}
+				isDarkMode={isDarkMode}
 			/>
 		</div>
 	);
